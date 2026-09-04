@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonrisas — Clínica Dental</title>
+  <meta name="description" content="Clínica dental Sonrisas. Agenda tu cita en menos de un minuto. Atención cercana, profesional y sin esperas." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Sonrisas, inicio">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Sonrisas
+    </a>
+    <nav class="header-actions">
+      <a class="phone" href="tel:+34910000000">910 000 000</a>
+      <a class="btn btn-sm" href="#agendar">Agendar cita</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Clínica dental · Madrid</p>
+        <h1>Cuidamos tu sonrisa con calma y criterio.</h1>
+        <p class="lead">
+          Primera visita con diagnóstico completo y plan de tratamiento claro,
+          sin sorpresas ni presiones. Agenda en menos de un minuto.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="#agendar">Agendar mi cita</a>
+          <a class="btn btn-ghost" href="tel:+34910000000">Prefiero llamar</a>
+        </div>
+        <ul class="trust">
+          <li>Sin lista de espera</li>
+          <li>Primera consulta sin coste</li>
+          <li>Financiación disponible</li>
+        </ul>
+      </div>
+      <div class="hero-media" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hero-card-row"><span>Próxima disponibilidad</span><strong>Mañana, 10:30</strong></div>
+          <div class="hero-card-row"><span>Duración</span><strong>45 min</strong></div>
+          <div class="hero-card-row"><span>Primera visita</span><strong>Gratuita</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="services" aria-labelledby="servicios-title">
+      <h2 id="servicios-title" class="section-title">En qué te podemos ayudar</h2>
+      <div class="service-grid">
+        <article class="service">
+          <h3>Odontología general</h3>
+          <p>Revisiones, limpiezas y empastes con material de última generación.</p>
+        </article>
+        <article class="service">
+          <h3>Ortodoncia invisible</h3>
+          <p>Alineadores transparentes con seguimiento mensual y plan cerrado.</p>
+        </article>
+        <article class="service">
+          <h3>Implantes</h3>
+          <p>Soluciones fijas y duraderas, planificadas con escáner 3D.</p>
+        </article>
+        <article class="service">
+          <h3>Estética dental</h3>
+          <p>Blanqueamiento y carillas con resultados naturales.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="booking" id="agendar" aria-labelledby="agendar-title">
+      <div class="booking-intro">
+        <h2 id="agendar-title" class="section-title">Agenda tu cita</h2>
+        <p>
+          Rellena el formulario y te confirmamos por teléfono en menos de 24 horas
+          laborables. También puedes llamarnos al
+          <a href="tel:+34910000000">910 000 000</a>.
+        </p>
+        <dl class="info">
+          <div><dt>Dirección</dt><dd>Calle Mayor 12, 28013 Madrid</dd></div>
+          <div><dt>Horario</dt><dd>Lun–Vie, 9:00–20:00 · Sáb, 9:00–14:00</dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:hola@sonrisas.es">hola@sonrisas.es</a></dd></div>
+        </dl>
+      </div>
+
+      <form class="booking-form" id="booking-form" novalidate>
+        <div class="field">
+          <label for="nombre">Nombre y apellidos</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+          <p class="error" data-error-for="nombre"></p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" required />
+            <p class="error" data-error-for="telefono"></p>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="optional">(opcional)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" />
+            <p class="error" data-error-for="email"></p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="motivo">Motivo de la visita</label>
+            <select id="motivo" name="motivo" required>
+              <option value="">Selecciona una opción</option>
+              <option>Primera visita / revisión</option>
+              <option>Limpieza dental</option>
+              <option>Ortodoncia invisible</option>
+              <option>Implantes</option>
+              <option>Estética dental</option>
+              <option>Urgencia / dolor</option>
+            </select>
+            <p class="error" data-error-for="motivo"></p>
+          </div>
+          <div class="field">
+            <label for="franja">Franja preferida</label>
+            <select id="franja" name="franja" required>
+              <option value="">Selecciona una opción</option>
+              <option>Mañana (9:00–14:00)</option>
+              <option>Tarde (16:00–20:00)</option>
+              <option>Me da igual</option>
+            </select>
+            <p class="error" data-error-for="franja"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="comentario">Comentario <span class="optional">(opcional)</span></label>
+          <textarea id="comentario" name="comentario" rows="3" placeholder="Cuéntanos brevemente qué necesitas"></textarea>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" id="privacidad" name="privacidad" required />
+          <span>He leído y acepto la <a href="#">política de privacidad</a>.</span>
+        </label>
+        <p class="error" data-error-for="privacidad"></p>
+
+        <button class="btn btn-block" type="submit">Solicitar cita</button>
+        <p class="form-note">No compartimos tus datos con terceros.</p>
+
+        <div class="form-success" id="form-success" hidden role="status">
+          <strong>¡Solicitud enviada!</strong>
+          <span>Te llamamos en menos de 24 horas laborables para confirmar el día y la hora.</span>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year"></span> Clínica Dental Sonrisas</span>
+    <span>Calle Mayor 12, Madrid · 910 000 000</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

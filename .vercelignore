@@ -1,0 +1,4 @@
+# Solo se publica el sitio estatico: index.html, styles.css, script.js
+dist/
+build.py
+.claude/
