@@ -1,53 +1,50 @@
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("anio").textContent = new Date().getFullYear();
 
-const form = document.getElementById("booking-form");
-const success = document.getElementById("form-success");
+const formulario = document.getElementById("formulario-cita");
+const confirmacion = document.getElementById("confirmacion");
 
-const rules = {
+const reglas = {
   nombre: (v) => (v.trim().length >= 2 ? "" : "Escribe tu nombre."),
   telefono: (v) =>
     /^[0-9+\s().-]{9,}$/.test(v.trim()) ? "" : "Escribe un teléfono válido.",
-  email: (v) =>
-    v.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())
-      ? ""
-      : "Escribe un email válido.",
-  motivo: (v) => (v ? "" : "Elige un motivo."),
-  franja: (v) => (v ? "" : "Elige una franja."),
-  privacidad: (_, el) => (el.checked ? "" : "Necesitamos tu consentimiento."),
+  motivo: (v) => (v ? "" : "Elige una opción."),
+  franja: (v) => (v ? "" : "Elige una opción."),
+  privacidad: (_, el) => (el.checked ? "" : "Marca la casilla para continuar."),
 };
 
-function validateField(name) {
-  const el = form.elements[name];
-  const message = rules[name](el.value, el);
-  const slot = form.querySelector(`[data-error-for="${name}"]`);
-  if (slot) slot.textContent = message;
-  el.closest(".field")?.classList.toggle("invalid", Boolean(message));
-  el.setAttribute("aria-invalid", message ? "true" : "false");
-  return !message;
+function validarCampo(nombre) {
+  const el = formulario.elements[nombre];
+  const mensaje = reglas[nombre](el.value, el);
+  const hueco = formulario.querySelector(`[data-error-de="${nombre}"]`);
+  if (hueco) hueco.textContent = mensaje;
+  el.closest(".campo")?.classList.toggle("invalido", Boolean(mensaje));
+  el.setAttribute("aria-invalid", mensaje ? "true" : "false");
+  return !mensaje;
 }
 
-// Revalidar en cuanto el usuario corrige un campo ya marcado como erróneo.
-Object.keys(rules).forEach((name) => {
-  const el = form.elements[name];
-  el.addEventListener("blur", () => validateField(name));
+// Revalida en cuanto alguien corrige un campo ya marcado en rojo, para que
+// el error desaparezca al arreglarlo y no al volver a enviar.
+Object.keys(reglas).forEach((nombre) => {
+  const el = formulario.elements[nombre];
+  el.addEventListener("blur", () => validarCampo(nombre));
   el.addEventListener("input", () => {
-    if (el.getAttribute("aria-invalid") === "true") validateField(name);
+    if (el.getAttribute("aria-invalid") === "true") validarCampo(nombre);
   });
 });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+formulario.addEventListener("submit", (evento) => {
+  evento.preventDefault();
 
-  const results = Object.keys(rules).map(validateField);
-  if (results.includes(false)) {
-    form.querySelector('[aria-invalid="true"]')?.focus();
+  const resultados = Object.keys(reglas).map(validarCampo);
+  if (resultados.includes(false)) {
+    formulario.querySelector('[aria-invalid="true"]')?.focus();
     return;
   }
 
-  // Sin backend: aquí iría el envío real (fetch a tu API, Formspree, etc.).
-  console.log("Solicitud de cita:", Object.fromEntries(new FormData(form)));
+  // Sin backend todavía: aquí va el envío real (Formspree, tu API, etc.).
+  console.log("Solicitud de cita:", Object.fromEntries(new FormData(formulario)));
 
-  form.reset();
-  success.hidden = false;
-  success.scrollIntoView({ block: "center", behavior: "smooth" });
+  formulario.reset();
+  confirmacion.hidden = false;
+  confirmacion.scrollIntoView({ block: "center", behavior: "smooth" });
 });
